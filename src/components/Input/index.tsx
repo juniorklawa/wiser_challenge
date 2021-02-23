@@ -5,7 +5,7 @@ interface IInputProps {
   fieldValue: string;
   setFieldValue: (value: string) => void;
   placeholder: string;
-  secureTextEntry?: boolean
+  secureTextEntry?: boolean;
 }
 
 const Input: React.FC<IInputProps> = ({
