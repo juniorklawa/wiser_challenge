@@ -73,7 +73,6 @@ export const SignInGradient = styled(LinearGradient).attrs({
 export const ForgotPassword = styled.Text`
   margin-left: 8px;
   margin-bottom: 8px;
-  margin-top: 16px;
   font-size: 14px;
   color: #fff;
   font-family: ${appTheme.font.regular};
