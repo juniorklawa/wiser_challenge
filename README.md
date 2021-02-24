@@ -14,8 +14,12 @@ To authenticate you will need to use these credentials:
 `email: johndoe@gmail.com`
 `password: 123123`
 
+  <p align="center">
+<img align="center" src="https://i.imgur.com/H1XezVz.png" alt="screenshot">
+  </p>
 
-<div style="text-align:center"><img align="center" src="https://i.imgur.com/z4NsXBS.png" alt="screenshot"></div>
+
+
 
 
 
