@@ -1,10 +1,12 @@
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {ActivityIndicator} from 'react-native';
+import {useDispatch} from 'react-redux';
 import * as yup from 'yup';
 import Input from '../../components/Input';
 import api from '../../services/api';
+import {signInRequest} from '../../store/ducks/user/actions';
 import showErrorMessage from '../../utils/showErrorMessage';
 import {
   ClickHereButton,
@@ -34,28 +36,35 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
-  const handleLogin = async (email: string, password: string) => {
-    try {
-      setIsLoading(true);
-      if (
-        email.toLowerCase() !== 'johndoe@gmail.com' ||
-        password !== '123123'
-      ) {
-        return showErrorMessage('Senha ou E-mail invalidos!');
+  const handleLogin = useCallback(
+    async (email: string, password: string) => {
+      try {
+        setIsLoading(true);
+        if (
+          email.toLowerCase() !== 'johndoe@gmail.com' ||
+          password !== '123123'
+        ) {
+          return showErrorMessage('Senha ou E-mail invalidos!');
+        }
+
+        dispatch(signInRequest(email, password));
+
+        const {data} = await api.post('98bd6150-0741-447b-8791-498f69233d35', {
+          email,
+          password,
+        });
+
+        navigation.navigate('ProfilePage', {user: data});
+      } catch (err) {
+        showErrorMessage(err);
+      } finally {
+        setIsLoading(false);
       }
-      const {data} = await api.post('98bd6150-0741-447b-8791-498f69233d35', {
-        email,
-        password,
-      });
-
-      navigation.navigate('ProfilePage', {user: data});
-    } catch (err) {
-      showErrorMessage(err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [dispatch, navigation],
+  );
 
   return (
     <>

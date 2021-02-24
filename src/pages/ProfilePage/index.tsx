@@ -1,5 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {useSelector} from 'react-redux';
+import {IState} from '../../store';
+import {IUserState} from '../../store/ducks/user/types';
 import {
   Avatar,
   Container,
@@ -17,16 +20,8 @@ interface IUser {
   name: string;
 }
 
-interface IProfilePageProps {
-  route: {
-    params: {
-      user: IUser;
-    };
-  };
-}
-
-const ProfilePage = ({route}: IProfilePageProps) => {
-  const {user} = route.params;
+const ProfilePage = () => {
+  const user = useSelector<IState, IUserState>((state) => state.user);
 
   const navigation = useNavigation();
 
