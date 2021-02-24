@@ -114,7 +114,3 @@ export const InputWrapper = styled.View<InputProps>`
   align-items: center;
   border-color: ${({hasError}) => (hasError ? '#FF377F' : '#989FDB')};
 `;
-
-export const ScrollView = styled.ScrollView`
-  flex: 1;
-`;

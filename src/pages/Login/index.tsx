@@ -20,7 +20,6 @@ import {
   SignInText,
   SubtitleText,
   WelcomeText,
-  ScrollView,
 } from './styles';
 
 const LoginPage = () => {
@@ -60,60 +59,56 @@ const LoginPage = () => {
 
   return (
     <>
-      <ScrollView>
-        <Container>
-          <Formik
-            validationSchema={loginValidationSchema}
-            initialValues={{email: '', password: ''}}
-            onSubmit={async ({email, password}) =>
-              handleLogin(email, password)
-            }>
-            {({handleSubmit}) => (
-              <>
-                <LoginCard>
-                  <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
+      <Container>
+        <Formik
+          validationSchema={loginValidationSchema}
+          initialValues={{email: '', password: ''}}
+          onSubmit={async ({email, password}) => handleLogin(email, password)}>
+          {({handleSubmit}) => (
+            <>
+              <LoginCard>
+                <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
 
-                  <SubtitleText>
-                    Para acessar a plataforma, faça seu login.
-                  </SubtitleText>
+                <SubtitleText>
+                  Para acessar a plataforma, faça seu login.
+                </SubtitleText>
 
-                  <FieldTitle>E-MAIL</FieldTitle>
-                  <Input
-                    name="email"
-                    placeholder={'user.name@mail.com'}
-                    keyboardType="email-address"
-                  />
+                <FieldTitle>E-MAIL</FieldTitle>
+                <Input
+                  name="email"
+                  placeholder={'user.name@mail.com'}
+                  keyboardType="email-address"
+                />
 
-                  <FieldTitle>SENHA</FieldTitle>
-                  <Input
-                    name="password"
-                    placeholder={'*******'}
-                    secureTextEntry={true}
-                  />
-                </LoginCard>
-                <SignInButton onPress={handleSubmit}>
-                  <SignInGradient>
-                    {!isLoading ? (
-                      <SignInText>ENTRAR</SignInText>
-                    ) : (
-                      <ActivityIndicator size="large" color="#fff" />
-                    )}
-                  </SignInGradient>
-                </SignInButton>
-              </>
-            )}
-          </Formik>
+                <FieldTitle>SENHA</FieldTitle>
+                <Input
+                  name="password"
+                  placeholder={'*******'}
+                  secureTextEntry={true}
+                />
+              </LoginCard>
+              <SignInButton onPress={handleSubmit}>
+                <SignInGradient>
+                  {!isLoading ? (
+                    <SignInText>ENTRAR</SignInText>
+                  ) : (
+                    <ActivityIndicator size="large" color="#fff" />
+                  )}
+                </SignInGradient>
+              </SignInButton>
+            </>
+          )}
+        </Formik>
 
-          <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
+        <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
 
-          <ClickHereContainer>
-            <ClickText>Clique</ClickText>
-            <ClickHereButton>
-              <HereText>aqui</HereText>
-            </ClickHereButton>
-          </ClickHereContainer>
-        </Container>
-      </ScrollView>
+        <ClickHereContainer>
+          <ClickText>Clique</ClickText>
+          <ClickHereButton>
+            <HereText>aqui</HereText>
+          </ClickHereButton>
+        </ClickHereContainer>
+      </Container>
     </>
   );
 };
