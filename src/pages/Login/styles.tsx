@@ -52,8 +52,9 @@ export const FieldTitle = styled.Text`
 `;
 
 export const SignInButton = styled.TouchableOpacity`
-  z-index: 5;
   margin-top: 16px;
+  position: relative;
+  bottom: 45px;
 `;
 
 export const SignInGradient = styled(LinearGradient).attrs({
@@ -65,8 +66,6 @@ export const SignInGradient = styled(LinearGradient).attrs({
   width: 180px;
   justify-content: center;
   align-items: center;
-  position: relative;
-  top: -40px;
   border-radius: 8px;
 `;
 
