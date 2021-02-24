@@ -2,6 +2,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {useState} from 'react';
 import {ActivityIndicator} from 'react-native';
+import {ScrollView} from 'react-native-gesture-handler';
 import * as yup from 'yup';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -59,56 +60,60 @@ const LoginPage = () => {
 
   return (
     <>
-      <Container>
-        <Formik
-          validationSchema={loginValidationSchema}
-          initialValues={{email: '', password: ''}}
-          onSubmit={async ({email, password}) => handleLogin(email, password)}>
-          {({handleSubmit}) => (
-            <>
-              <LoginCard>
-                <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
+      <ScrollView style={{flex: 1}}>
+        <Container>
+          <Formik
+            validationSchema={loginValidationSchema}
+            initialValues={{email: '', password: ''}}
+            onSubmit={async ({email, password}) =>
+              handleLogin(email, password)
+            }>
+            {({handleSubmit}) => (
+              <>
+                <LoginCard>
+                  <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
 
-                <SubtitleText>
-                  Para acessar a plataforma, faça seu login.
-                </SubtitleText>
+                  <SubtitleText>
+                    Para acessar a plataforma, faça seu login.
+                  </SubtitleText>
 
-                <FieldTitle>E-MAIL</FieldTitle>
-                <Input
-                  name="email"
-                  placeholder={'user.name@mail.com'}
-                  keyboardType="email-address"
-                />
+                  <FieldTitle>E-MAIL</FieldTitle>
+                  <Input
+                    name="email"
+                    placeholder={'user.name@mail.com'}
+                    keyboardType="email-address"
+                  />
 
-                <FieldTitle>SENHA</FieldTitle>
-                <Input
-                  name="password"
-                  placeholder={'*******'}
-                  secureTextEntry={true}
-                />
-              </LoginCard>
-              <SignInButton onPress={handleSubmit}>
-                <SignInGradient>
-                  {!isLoading ? (
-                    <SignInText>ENTRAR</SignInText>
-                  ) : (
-                    <ActivityIndicator size="large" color="#fff" />
-                  )}
-                </SignInGradient>
-              </SignInButton>
-            </>
-          )}
-        </Formik>
+                  <FieldTitle>SENHA</FieldTitle>
+                  <Input
+                    name="password"
+                    placeholder={'*******'}
+                    secureTextEntry={true}
+                  />
+                </LoginCard>
+                <SignInButton onPress={handleSubmit}>
+                  <SignInGradient>
+                    {!isLoading ? (
+                      <SignInText>ENTRAR</SignInText>
+                    ) : (
+                      <ActivityIndicator size="large" color="#fff" />
+                    )}
+                  </SignInGradient>
+                </SignInButton>
+              </>
+            )}
+          </Formik>
 
-        <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
+          <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
 
-        <ClickHereContainer>
-          <ClickText>Clique</ClickText>
-          <ClickHereButton>
-            <HereText>aqui</HereText>
-          </ClickHereButton>
-        </ClickHereContainer>
-      </Container>
+          <ClickHereContainer>
+            <ClickText>Clique</ClickText>
+            <ClickHereButton>
+              <HereText>aqui</HereText>
+            </ClickHereButton>
+          </ClickHereContainer>
+        </Container>
+      </ScrollView>
     </>
   );
 };
