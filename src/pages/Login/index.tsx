@@ -15,7 +15,6 @@ import {
   ForgotPassword,
   HereText,
   LoginCard,
-  SafeArea,
   SignInButton,
   SignInGradient,
   SignInText,
@@ -39,7 +38,10 @@ const LoginPage = () => {
   const handleLogin = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      if (email !== 'johndoe@gmail.com' || password !== '123123') {
+      if (
+        email.toLowerCase() !== 'johndoe@gmail.com' ||
+        password !== '123123'
+      ) {
         return showErrorMessage('Senha ou E-mail invalidos!');
       }
       const {data} = await api.post('98bd6150-0741-447b-8791-498f69233d35', {
@@ -57,60 +59,56 @@ const LoginPage = () => {
 
   return (
     <>
-      <SafeArea>
-        <Container>
-          <Formik
-            validationSchema={loginValidationSchema}
-            initialValues={{email: '', password: ''}}
-            onSubmit={async ({email, password}) =>
-              handleLogin(email, password)
-            }>
-            {({handleSubmit}) => (
-              <>
-                <LoginCard>
-                  <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
+      <Container>
+        <Formik
+          validationSchema={loginValidationSchema}
+          initialValues={{email: '', password: ''}}
+          onSubmit={async ({email, password}) => handleLogin(email, password)}>
+          {({handleSubmit}) => (
+            <>
+              <LoginCard>
+                <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
 
-                  <SubtitleText>
-                    Para acessar a plataforma, faça seu login.
-                  </SubtitleText>
+                <SubtitleText>
+                  Para acessar a plataforma, faça seu login.
+                </SubtitleText>
 
-                  <FieldTitle>E-MAIL</FieldTitle>
-                  <Input
-                    name="email"
-                    placeholder={'user.name@mail.com'}
-                    keyboardType="email-address"
-                  />
+                <FieldTitle>E-MAIL</FieldTitle>
+                <Input
+                  name="email"
+                  placeholder={'user.name@mail.com'}
+                  keyboardType="email-address"
+                />
 
-                  <FieldTitle>SENHA</FieldTitle>
-                  <Input
-                    name="password"
-                    placeholder={'*******'}
-                    secureTextEntry={true}
-                  />
-                </LoginCard>
-                <SignInButton onPress={handleSubmit}>
-                  <SignInGradient>
-                    {!isLoading ? (
-                      <SignInText>ENTRAR</SignInText>
-                    ) : (
-                      <ActivityIndicator size="large" color="#fff" />
-                    )}
-                  </SignInGradient>
-                </SignInButton>
-              </>
-            )}
-          </Formik>
+                <FieldTitle>SENHA</FieldTitle>
+                <Input
+                  name="password"
+                  placeholder={'*******'}
+                  secureTextEntry={true}
+                />
+              </LoginCard>
+              <SignInButton onPress={handleSubmit}>
+                <SignInGradient>
+                  {!isLoading ? (
+                    <SignInText>ENTRAR</SignInText>
+                  ) : (
+                    <ActivityIndicator size="large" color="#fff" />
+                  )}
+                </SignInGradient>
+              </SignInButton>
+            </>
+          )}
+        </Formik>
 
-          <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
+        <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
 
-          <ClickHereContainer>
-            <ClickText>Clique</ClickText>
-            <ClickHereButton>
-              <HereText>aqui</HereText>
-            </ClickHereButton>
-          </ClickHereContainer>
-        </Container>
-      </SafeArea>
+        <ClickHereContainer>
+          <ClickText>Clique</ClickText>
+          <ClickHereButton>
+            <HereText>aqui</HereText>
+          </ClickHereButton>
+        </ClickHereContainer>
+      </Container>
     </>
   );
 };

@@ -36,25 +36,19 @@ const ProfilePage = ({route}: IProfilePageProps) => {
   };
 
   return (
-    <>
-      <SafeArea>
-        <Container>
-          <>
-            <ProfileCard>
-              <Avatar source={{uri: user.avatar}} />
-              <UserName>{user.name}</UserName>
-              <UserEmail>{user.email}</UserEmail>
+    <Container>
+      <ProfileCard>
+        <Avatar source={{uri: user.avatar}} />
+        <UserName>{user.name}</UserName>
+        <UserEmail>{user.email}</UserEmail>
 
-              <SignOutButton onPress={handleSignOut}>
-                <SignOutGradient>
-                  <SignOutText>SAIR</SignOutText>
-                </SignOutGradient>
-              </SignOutButton>
-            </ProfileCard>
-          </>
-        </Container>
-      </SafeArea>
-    </>
+        <SignOutButton onPress={handleSignOut}>
+          <SignOutGradient>
+            <SignOutText>SAIR</SignOutText>
+          </SignOutGradient>
+        </SignOutButton>
+      </ProfileCard>
+    </Container>
   );
 };
 

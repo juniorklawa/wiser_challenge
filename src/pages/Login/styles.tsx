@@ -41,10 +41,6 @@ export const SubtitleText = styled.Text`
   margin-top: 16px;
 `;
 
-export const SafeArea = styled.SafeAreaView`
-  flex: 1;
-`;
-
 export const FieldTitle = styled.Text`
   margin-left: 24px;
   margin-bottom: 8px;
