@@ -29,6 +29,7 @@ const Input: React.FC<IInputProps> = ({
     <>
       <InputWrapper hasError={!!errors[name] && !!touched[name]}>
         <InputContainer
+          autoCapitalize="none"
           secureTextEntry={secureTextEntry}
           placeholder={placeholder}
           keyboardType={keyboardType}
