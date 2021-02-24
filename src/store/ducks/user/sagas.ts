@@ -7,8 +7,6 @@ import {IUserState, USER_REDUCER_TYPES} from './types';
 type AuthUserRequest = ReturnType<typeof signInRequest>;
 
 function* authUser({payload}: AuthUserRequest) {
-  console.log('chamou a api', payload);
-
   const {data}: AxiosResponse<IUserState> = yield call(
     api.post,
     '98bd6150-0741-447b-8791-498f69233d35',
