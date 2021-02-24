@@ -19,11 +19,11 @@ export function signInSuccess(user: IUserState) {
   };
 }
 
-export function signInFailure(message: string) {
+export function signInFailure() {
   return {
     type: USER_REDUCER_TYPES.USER_SIGN_IN_FAILURE,
     payload: {
-      message,
+      //TODO
     },
   };
 }

@@ -1,5 +1,4 @@
 import {Reducer} from 'redux';
-import showErrorMessage from '../../../utils/showErrorMessage';
 import {IUserState, USER_REDUCER_TYPES} from './types';
 
 const INITIAL_STATE: IUserState = {
@@ -21,7 +20,8 @@ const user: Reducer<any> = (state = INITIAL_STATE, action) => {
     }
 
     case USER_REDUCER_TYPES.USER_SIGN_IN_FAILURE: {
-      return showErrorMessage(action.payload);
+      //TODO
+      break;
     }
 
     default: {

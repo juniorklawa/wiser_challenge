@@ -9,13 +9,6 @@ type AuthUserRequest = ReturnType<typeof signInRequest>;
 function* authUser({payload}: AuthUserRequest) {
   console.log('chamou a api', payload);
 
-  if (
-    payload.email.toLowerCase() !== 'johndoe@gmail.com' ||
-    payload.password !== '123123'
-  ) {
-    yield put(signInFailure('Senha ou e-mail invalídos'));
-  }
-
   const {data}: AxiosResponse<IUserState> = yield call(
     api.post,
     '98bd6150-0741-447b-8791-498f69233d35',
@@ -24,6 +17,8 @@ function* authUser({payload}: AuthUserRequest) {
 
   if (data) {
     yield put(signInSuccess(data));
+  } else {
+    yield signInFailure();
   }
 }
 

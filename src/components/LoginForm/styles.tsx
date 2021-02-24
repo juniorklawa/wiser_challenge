@@ -2,18 +2,6 @@ import LinearGradient from 'react-native-linear-gradient';
 import styled from 'styled-components/native';
 import appTheme from '../../theme/appTheme';
 
-interface InputProps {
-  hasError: boolean;
-}
-
-export const Container = styled.ImageBackground.attrs({
-  source: require('../../assets/background.png'),
-})`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const LoginCard = styled.View`
   width: 85%;
   border-radius: 8px;
@@ -69,46 +57,8 @@ export const SignInGradient = styled(LinearGradient).attrs({
   border-radius: 8px;
 `;
 
-export const ForgotPassword = styled.Text`
-  margin-left: 8px;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #fff;
-  font-family: ${appTheme.font.regular};
-`;
-
-export const ClickHereContainer = styled.View`
-  flex-direction: row;
-`;
-
-export const ClickText = styled.Text`
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #fff;
-  font-family: ${appTheme.font.regular};
-`;
-
-export const ClickHereButton = styled.TouchableOpacity``;
-
-export const HereText = styled.Text`
-  text-decoration-line: underline;
-  margin-bottom: 8px;
-  margin-left: 4px;
-  font-size: 14px;
-  color: #fff;
-  font-family: ${appTheme.font.regular};
-`;
-
 export const SignInText = styled.Text`
   font-size: 16px;
   color: #fff;
   font-family: ${appTheme.font.semiBold};
-`;
-
-export const InputWrapper = styled.View<InputProps>`
-  border-width: 1.5px;
-  border-radius: 8px;
-  flex-direction: row;
-  align-items: center;
-  border-color: ${({hasError}) => (hasError ? '#FF377F' : '#989FDB')};
 `;
