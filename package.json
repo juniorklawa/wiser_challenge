@@ -13,6 +13,8 @@
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
+    "@testing-library/react-native": "^7.1.0",
+    "@testing-library/user-event": "^12.7.3",
     "axios": "^0.21.1",
     "formik": "^2.2.6",
     "react": "16.13.1",
@@ -53,6 +55,10 @@
   },
   "jest": {
     "preset": "react-native",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/assetsTransformer.js",
+      "\\.(css|less)$": "<rootDir>/assetsTransformer.js"
+    },
     "moduleFileExtensions": [
       "ts",
       "tsx",

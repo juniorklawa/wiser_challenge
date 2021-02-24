@@ -8,7 +8,7 @@ interface IFieldErrorProps {
 const FieldError: React.FC<IFieldErrorProps> = ({errors}) => {
   return (
     <ErrorContainer>
-      <ErrorText>{errors}</ErrorText>
+      <ErrorText testID="error-view">{errors}</ErrorText>
     </ErrorContainer>
   );
 };
