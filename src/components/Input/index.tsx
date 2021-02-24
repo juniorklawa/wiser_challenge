@@ -9,6 +9,7 @@ interface IInputProps {
   placeholder: string;
   secureTextEntry?: boolean;
   keyboardType?: KeyboardTypeOptions;
+  testID?: string;
 }
 
 const Input: React.FC<IInputProps> = ({
@@ -16,6 +17,7 @@ const Input: React.FC<IInputProps> = ({
   keyboardType,
   placeholder,
   secureTextEntry = false,
+  testID,
 }) => {
   const {
     setFieldTouched,
@@ -36,6 +38,7 @@ const Input: React.FC<IInputProps> = ({
           value={values[name]}
           onBlur={() => setFieldTouched(name)}
           onChangeText={(text) => setFieldValue(name, text)}
+          testID={testID}
         />
         {!!errors[name] && touched[name] && <ErrorIcon />}
       </InputWrapper>
