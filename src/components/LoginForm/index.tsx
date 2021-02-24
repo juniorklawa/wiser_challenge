@@ -32,7 +32,7 @@ const LoginForm: React.FC<ILoginFormProps> = ({handleLogin, isLoading}) => {
       validationSchema={loginValidationSchema}
       initialValues={{email: '', password: ''}}
       onSubmit={async ({email, password}) => handleLogin(email, password)}>
-      {({handleSubmit}) => (
+      {({handleSubmit, isValid}) => (
         <>
           <LoginCard>
             <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
@@ -57,7 +57,10 @@ const LoginForm: React.FC<ILoginFormProps> = ({handleLogin, isLoading}) => {
               secureTextEntry={true}
             />
           </LoginCard>
-          <SignInButton testID="submit-button" onPress={handleSubmit}>
+          <SignInButton
+            disabled={!isValid}
+            testID="submit-button"
+            onPress={handleSubmit}>
             <SignInGradient>
               {!isLoading ? (
                 <SignInText>ENTRAR</SignInText>

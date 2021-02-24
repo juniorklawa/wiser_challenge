@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Login form /> renders correctly 1`] = `
+exports[`<LoginForm/> renders correctly 1`] = `
 Array [
   <View
     style={

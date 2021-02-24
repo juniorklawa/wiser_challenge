@@ -24,6 +24,7 @@ const LoginPage = () => {
     async (email: string, password: string) => {
       try {
         setIsLoading(true);
+
         if (
           email.toLowerCase() !== 'johndoe@gmail.com' ||
           password !== '123123'

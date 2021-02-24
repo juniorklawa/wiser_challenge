@@ -1,4 +1,9 @@
-import {cleanup, render, waitFor} from '@testing-library/react-native';
+import {
+  cleanup,
+  render,
+  waitFor,
+  fireEvent,
+} from '@testing-library/react-native';
 import React from 'react';
 import LoginForm from '../../src/components/LoginForm';
 
@@ -15,20 +20,66 @@ describe('<LoginForm/>', () => {
     await waitFor(() => {
       expect(toJSON()).toMatchSnapshot();
     });
+  });
 
-    // const emailInput = getByTestId('email-input');
-    // const button = getByText('Add');
-    // fireEvent.changeText(emailInput, 'jailson');
-    // fireEvent.press(button);
-    // fireEvent.changeText(input, 'item1');
-    // fireEvent.press(button);
-    // const item0 = getByText('item0');
-    // const item1 = getByText('item1');
-    // expect(item0).toBeDefined();
-    // expect(item1).toBeDefined();
-    // fireEvent.press(getAllByTestId('cell-delete')[0]);
-    // expect(queryByText('item0')).toBeNull();
-    // const list = getByTestId('list');
-    // expect(list).toContainElement(item1);
+  it('shows an error if e-mail is invalid', async () => {
+    const {getByTestId, queryByTestId} = render(
+      <LoginForm handleLogin={() => {}} isLoading={false} />,
+    );
+
+    const emailInput = getByTestId('email-input');
+    const passwordInput = getByTestId('password-input');
+    const submitButton = getByTestId('submit-button');
+
+    fireEvent.changeText(emailInput, 'jailson');
+    fireEvent.changeText(passwordInput, '123123');
+    fireEvent.press(submitButton);
+
+    await waitFor(() => {
+      expect(queryByTestId('error-container')).toBeTruthy();
+      expect(getByTestId('error-text').props.children).toBe(
+        'Digite um e-mail válido.',
+      );
+    });
+  });
+
+  it('shows an error if password field is empty', async () => {
+    const {getByTestId, queryByTestId} = render(
+      <LoginForm handleLogin={() => {}} isLoading={false} />,
+    );
+
+    const emailInput = getByTestId('email-input');
+    const passwordInput = getByTestId('password-input');
+    const submitButton = getByTestId('submit-button');
+
+    fireEvent.changeText(emailInput, 'foobar@gmail.com');
+    fireEvent.changeText(passwordInput, '');
+    fireEvent.press(submitButton);
+
+    await waitFor(() => {
+      expect(queryByTestId('error-container')).toBeTruthy();
+      expect(getByTestId('error-text').props.children).toBe(
+        'Senha é obrigatória.',
+      );
+    });
+  });
+
+  it('submit button should be disabled if validation fails', async () => {
+    const {getByTestId} = render(
+      <LoginForm handleLogin={() => {}} isLoading={false} />,
+    );
+
+    const emailInput = getByTestId('email-input');
+    const passwordInput = getByTestId('password-input');
+    const submitButton = getByTestId('submit-button');
+
+    fireEvent.changeText(emailInput, 'foobargmail.com');
+    fireEvent.changeText(passwordInput, '12312412412');
+
+    fireEvent.press(submitButton);
+
+    await waitFor(() => {
+      expect(handleSubmit).toBeCalledTimes(0);
+    });
   });
 });
