@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {useState} from 'react';
-import {ActivityIndicator, TouchableOpacity} from 'react-native';
+import {ActivityIndicator} from 'react-native';
 import * as yup from 'yup';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -42,7 +42,10 @@ const LoginPage = () => {
       if (email !== 'johndoe@gmail.com' || password !== '123123') {
         return showErrorMessage('Senha ou E-mail invalidos!');
       }
-      const {data} = await api.post('98bd6150-0741-447b-8791-498f69233d35');
+      const {data} = await api.post('98bd6150-0741-447b-8791-498f69233d35', {
+        email,
+        password,
+      });
 
       navigation.navigate('ProfilePage', {user: data});
     } catch (err) {
