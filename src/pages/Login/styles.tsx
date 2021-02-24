@@ -66,7 +66,7 @@ export const SignInGradient = styled(LinearGradient).attrs({
   justify-content: center;
   align-items: center;
   position: relative;
-  top: -30px;
+  top: -40px;
   border-radius: 8px;
 `;
 
