@@ -1,21 +1,19 @@
+import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {useState} from 'react';
 import {ActivityIndicator, TouchableOpacity} from 'react-native';
 import * as yup from 'yup';
-import FieldError from '../../components/FieldError';
+import Input from '../../components/Input';
 import api from '../../services/api';
 import showErrorMessage from '../../utils/showErrorMessage';
 import {
-  ClickeHereContainer,
+  ClickHereButton,
+  ClickHereContainer,
   ClickText,
   Container,
-  ErrorIcon,
-  FieldContainer,
   FieldTitle,
   ForgotPassword,
   HereText,
-  Input,
-  InputWrapper,
   LoginCard,
   SafeArea,
   SignInButton,
@@ -24,12 +22,6 @@ import {
   SubtitleText,
   WelcomeText,
 } from './styles';
-
-interface IUser {
-  name: string;
-  email: string;
-  avatar: string;
-}
 
 const LoginPage = () => {
   const loginValidationSchema = yup.object().shape({
@@ -40,17 +32,19 @@ const LoginPage = () => {
     password: yup.string().required('Senha é obrigatória.'),
   });
 
-  const [, setUser] = useState<IUser>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const navigation = useNavigation();
 
   const handleLogin = async (email: string, password: string) => {
     try {
       setIsLoading(true);
       if (email !== 'johndoe@gmail.com' || password !== '123123') {
-        showErrorMessage('Senha ou E-mail invalidos!');
+        return showErrorMessage('Senha ou E-mail invalidos!');
       }
       const {data} = await api.post('98bd6150-0741-447b-8791-498f69233d35');
-      setUser(data);
+
+      navigation.navigate('ProfilePage', {user: data});
     } catch (err) {
       showErrorMessage(err);
     } finally {
@@ -68,14 +62,7 @@ const LoginPage = () => {
             onSubmit={async ({email, password}) =>
               handleLogin(email, password)
             }>
-            {({
-              handleChange,
-              handleBlur,
-              handleSubmit,
-              values,
-              errors,
-              touched,
-            }) => (
+            {({handleSubmit}) => (
               <>
                 <LoginCard>
                   <WelcomeText>Olá, seja bem-vindo!</WelcomeText>
@@ -84,43 +71,19 @@ const LoginPage = () => {
                     Para acessar a plataforma, faça seu login.
                   </SubtitleText>
 
-                  <FieldContainer>
-                    <FieldTitle>E-MAIL</FieldTitle>
-                    <InputWrapper hasError={!!errors.email && !!touched.email}>
-                      <Input
-                        placeholder={'user.name@mail.com'}
-                        onChangeText={handleChange('email')}
-                        onBlur={handleBlur('email')}
-                        value={values.email}
-                        keyboardType="email-address"
-                      />
-                      {!!errors.email && !!touched.email && <ErrorIcon />}
-                    </InputWrapper>
-                  </FieldContainer>
+                  <FieldTitle>E-MAIL</FieldTitle>
+                  <Input
+                    name="email"
+                    placeholder={'user.name@mail.com'}
+                    keyboardType="email-address"
+                  />
 
-                  {errors.email && touched.email && (
-                    <FieldError errors={errors.email} />
-                  )}
-
-                  <FieldContainer>
-                    <FieldTitle>SENHA</FieldTitle>
-                    <InputWrapper
-                      hasError={!!errors.password && !!touched.password}>
-                      <Input
-                        placeholder={'*******'}
-                        onChangeText={handleChange('password')}
-                        onBlur={handleBlur('password')}
-                        value={values.password}
-                        secureTextEntry={true}
-                      />
-
-                      {!!errors.password && !!touched.password && <ErrorIcon />}
-                    </InputWrapper>
-                  </FieldContainer>
-
-                  {errors.password && touched.password && (
-                    <FieldError errors={errors.password} />
-                  )}
+                  <FieldTitle>SENHA</FieldTitle>
+                  <Input
+                    name="password"
+                    placeholder={'*******'}
+                    secureTextEntry={true}
+                  />
                 </LoginCard>
                 <SignInButton onPress={handleSubmit}>
                   <SignInGradient>
@@ -137,12 +100,12 @@ const LoginPage = () => {
 
           <ForgotPassword>Esqueceu seu login ou senha?</ForgotPassword>
 
-          <ClickeHereContainer>
+          <ClickHereContainer>
             <ClickText>Clique</ClickText>
-            <TouchableOpacity>
+            <ClickHereButton>
               <HereText>aqui</HereText>
-            </TouchableOpacity>
-          </ClickeHereContainer>
+            </ClickHereButton>
+          </ClickHereContainer>
         </Container>
       </SafeArea>
     </>

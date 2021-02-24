@@ -2,7 +2,7 @@ import React from 'react';
 import {ErrorContainer, ErrorText} from './styles';
 
 interface IFieldErrorProps {
-  errors: string;
+  errors: any;
 }
 
 const FieldError: React.FC<IFieldErrorProps> = ({errors}) => {

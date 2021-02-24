@@ -1,5 +1,4 @@
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/AntDesign';
 import styled from 'styled-components/native';
 import appTheme from '../../theme/appTheme';
 
@@ -19,8 +18,9 @@ export const LoginCard = styled.View`
   width: 85%;
   border-radius: 8px;
   padding-horizontal: 16px;
-  padding-vertical: 32px;
-  margin-top: 60px;
+  padding-top: 16px;
+  padding-bottom: 48px;
+  margin-top: 78px;
   align-items: center;
   background-color: ${appTheme.color.card};
 `;
@@ -45,16 +45,13 @@ export const SafeArea = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const FieldContainer = styled.View`
-  width: 93%;
-`;
-
 export const FieldTitle = styled.Text`
-  margin-left: 8px;
+  margin-left: 24px;
   margin-bottom: 8px;
   margin-top: 16px;
   font-family: ${appTheme.font.regular};
   font-size: 10px;
+  align-self: flex-start;
   color: ${appTheme.color.mediumPurple};
 `;
 
@@ -86,7 +83,7 @@ export const ForgotPassword = styled.Text`
   font-family: ${appTheme.font.regular};
 `;
 
-export const ClickeHereContainer = styled.View`
+export const ClickHereContainer = styled.View`
   flex-direction: row;
 `;
 
@@ -120,34 +117,4 @@ export const InputWrapper = styled.View<InputProps>`
   flex-direction: row;
   align-items: center;
   border-color: ${({hasError}) => (hasError ? '#FF377F' : '#989FDB')};
-`;
-
-export const Input = styled.TextInput.attrs({
-  placeholderTextColor: '#989FDB',
-})`
-  font-family: ${appTheme.font.regular};
-  padding-vertical: 12px;
-  flex: 1;
-  padding-horizontal: 16px;
-`;
-
-export const ErrorContainer = styled.View`
-  width: 100%;
-  padding-horizontal: 16px;
-  padding-vertical: 8px;
-  margin-left: 24px;
-`;
-
-export const ErrorText = styled.Text`
-  font-size: 10px;
-  color: #ff377f;
-  font-family: ${appTheme.font.regular};
-`;
-
-export const ErrorIcon = styled(Icon).attrs({
-  name: 'close',
-  color: '#ff377f',
-  size: 20,
-})`
-  margin-right: 16px;
 `;
