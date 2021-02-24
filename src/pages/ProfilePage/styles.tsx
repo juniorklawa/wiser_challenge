@@ -35,10 +35,6 @@ export const UserEmail = styled.Text`
   text-align: center;
 `;
 
-export const SafeArea = styled.SafeAreaView`
-  flex: 1;
-`;
-
 export const SignOutButton = styled.TouchableOpacity`
   z-index: 5;
   margin-top: 16px;
