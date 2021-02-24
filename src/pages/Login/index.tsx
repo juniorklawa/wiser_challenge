@@ -2,7 +2,6 @@ import {useNavigation} from '@react-navigation/native';
 import {Formik} from 'formik';
 import React, {useState} from 'react';
 import {ActivityIndicator} from 'react-native';
-import {ScrollView} from 'react-native-gesture-handler';
 import * as yup from 'yup';
 import Input from '../../components/Input';
 import api from '../../services/api';
@@ -21,6 +20,7 @@ import {
   SignInText,
   SubtitleText,
   WelcomeText,
+  ScrollView,
 } from './styles';
 
 const LoginPage = () => {
@@ -60,7 +60,7 @@ const LoginPage = () => {
 
   return (
     <>
-      <ScrollView style={{flex: 1}}>
+      <ScrollView>
         <Container>
           <Formik
             validationSchema={loginValidationSchema}

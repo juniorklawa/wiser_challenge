@@ -28,7 +28,7 @@ export const LoginCard = styled.View`
 export const WelcomeText = styled.Text`
   color: ${appTheme.color.mediumPurple};
   font-size: 26px;
-  width: 50%;
+  width: 55%;
   font-family: ${appTheme.font.regular};
   text-align: center;
 `;
@@ -113,4 +113,8 @@ export const InputWrapper = styled.View<InputProps>`
   flex-direction: row;
   align-items: center;
   border-color: ${({hasError}) => (hasError ? '#FF377F' : '#989FDB')};
+`;
+
+export const ScrollView = styled.ScrollView`
+  flex: 1;
 `;

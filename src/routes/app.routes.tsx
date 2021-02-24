@@ -11,7 +11,7 @@ const AppRoutes: React.FC = () => (
     screenOptions={{
       headerShown: false,
       cardStyle: {
-        backgroundColor: '#fff',
+        backgroundColor: '#130525',
       },
     }}>
     <App.Screen name="LoginPage" component={LoginPage} />
