@@ -41,3 +41,4 @@ To authenticate you will need to use these credentials:
  - Add more tests
  - Remove some `any`
  - Improve USER_SIGN_IN_FAILURE 
+ - Background image using flex, linear gradient and svg
