@@ -30,6 +30,7 @@ To authenticate you will need to use these credentials:
 
  - React Native
  - Typescript
+ - Yup and Formik
  - Axios
  - Redux and Redux Saga
  - React Navigation
